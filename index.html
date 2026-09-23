@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laura & David — 26.08.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     EDIT ME — couple names & wedding date live here.
+     ============================================================ */
+  :root{
+    --bride: "Laura";
+    --groom: "David";
+    --wedding-date: "26.08.2026";
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --ink:        #1C1A17;
+    --cream:      #F6F2EA;
+    --cream-deep: #EDE6D8;
+    --taupe:      #B7A797;
+    --mocha:      #7A6552;
+    --espresso:   #3B2E24;
+    --line:       #D8CFC0;
+    --paper:      #FFFFFF;
+    --radius-lg: 4px;
+    --shadow: 0 18px 40px rgba(28, 26, 23, 0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 18px;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+  }
+
+  .script{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-weight: 400;
+  }
+
+  .eyebrow{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: var(--mocha);
+  }
+
+  .small-caps{
+    font-variant: small-caps;
+    letter-spacing: 0.12em;
+  }
+
+  a { color: inherit; }
+
+  .wrap{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  hr.thin{
+    border: none;
+    height: 1px;
+    background: var(--line);
+    margin: 0 auto;
+    width: 46px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ---------- Front cover (envelope) ---------- */
+  html.locked, html.locked body{
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .cover{
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--ink);
+    color: var(--cream);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.8s cubic-bezier(0.6,0,0.2,1), opacity 0.6s ease;
+  }
+  .cover.closing{
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+
+  .envelope{
+    position: relative;
+    width: clamp(180px, 46vw, 240px);
+    height: clamp(120px, 30vw, 160px);
+    margin-bottom: 34px;
+  }
+  .envelope svg{ width: 100%; height: 100%; display: block; }
+  .envelope .flap{
+    transform-origin: 50% 0%;
+    animation: flap-lift 2.4s ease-in-out infinite;
+  }
+  @keyframes flap-lift{
+    0%,100% { transform: rotateX(0deg); }
+    50%     { transform: rotateX(-14deg); }
+  }
+
+  .cover-monogram{
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .cover-monogram .amp{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: 1.4em;
+    color: var(--taupe);
+    padding: 0 6px;
+  }
+
+  .cover-date{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    color: var(--taupe);
+    margin-bottom: 40px;
+  }
+
+  .cover-tap{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(246,242,234,0.5);
+    padding: 13px 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    animation: tap-pulse 2s ease-in-out infinite;
+  }
+  @keyframes tap-pulse{
+    0%,100% { opacity: 0.75; }
+    50%     { opacity: 1; }
+  }
+
+  #mainContent{
+    opacity: 0;
+    transition: opacity 0.7s ease 0.25s;
+  }
+  #mainContent.revealed{
+    opacity: 1;
+  }
+
+  /* ---------- Hero (fixed couple photo) ---------- */
+  .hero-photo {
+  position: relative;
+  min-height: 100vh;
+
+  background-image: url("/Images/couple-photoshoot.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* Brown tint over the photo */
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(75, 45, 25, 0.32);
+  z-index: 1;
+}
+
+/* Text sits above the image + overlay */
+.hero-photo-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.hero-names {
+  margin: 0;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08em;
+}
+
+.hero-name-line {
+  display: block;
+  margin: 0 0.15em;
+}
+
+.hero-date {
+  margin-top: 24px;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: none;
+}
+  /* ---------- Site nav ---------- */
+  .site-nav{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 26px;
+  }
+  .nav-monogram{
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  .nav-monogram .amp{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: 1em;
+    padding: 0 2px;
+  }
+
+  .burger{
+    width: 42px; height: 42px;
+    border: none;
+    background: rgba(28,26,23,0.3);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .burger span{
+    width: 18px; height: 1.5px;
+    background: var(--cream);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .burger[aria-expanded="true"] span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+
+  .nav-menu{
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(55, 38, 27, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .nav-menu.open{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    height: 50vh;
+    
+  }
+  .nav-link{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+  .nav-link::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 1px;
+    background: var(--taupe);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+  .nav-link:hover::after{ transform: scaleX(1); }
+  .nav-menu-close{
+    position: absolute;
+    top: 20px; right: 24px;
+    width: 40px; height: 40px;
+    border: none;
+    background: transparent;
+    color: var(--cream);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  /* ---------- Our story ---------- */
+  section{ padding: 64px 0; }
+
+  .section-head{
+    text-align: center;
+    margin-bottom: 34px;
+  }
+  .section-head .kicker{
+    display: block;
+    font-style: italic;
+    color: var(--mocha);
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  .section-head h2{
+    font-size: clamp(1.7rem, 4.5vw, 2.2rem);
+  }
+
+  .story-text{
+    text-align: center;
+    max-width: 46ch;
+    margin: 0 auto;
+    color: #423b34;
+    font-size: 1.12rem;
+    line-height: 1.65;
+  }
+
+  .photo-strip{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+  .photo-frame{
+    width: 130px;
+    height: 160px;
+    background: linear-gradient(150deg, var(--cream-deep), var(--taupe) 130%);
+    border: 6px solid var(--paper);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--espresso);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+    transform: rotate(var(--tilt, 0deg));
+  }
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+  /* ---------- Schedule (striped background frame) ---------- */
+  .schedule-striped{
+    background-color: #F3E4C0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--espresso) 0px,
+      var(--espresso) 20px,
+      #F3E4C0 20px,
+      #F3E4C0 40px
+    );
+    padding: 26px 16px;
+  }
+  .timeline-panel{
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    padding: 44px 30px 40px;
+    position: relative;
+  }
+  .timeline{
+    position: relative;
+    margin-top: 10px;
+  }
+  .timeline::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--line);
+    transform: translateX(-50%);
+  }
+  .t-item{
+    text-align: center;
+    padding: 22px 10px;
+    position: relative;
+  }
+  .t-item .t-time{
+    font-style: italic;
+    color: var(--mocha);
+    font-size: 1rem;
+  }
+  .t-item .t-title{
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 4px 0 6px;
+  }
+  .t-item .t-desc{
+    color: #5c534a;
+    font-size: 0.98rem;
+    max-width: 34ch;
+    margin: 0 auto;
+  }
+  .t-dot{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--ink);
+    margin: 0 auto 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- Couple photo ---------- */
+  .couple-photo{
+    max-width: 460px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(150deg, var(--cream-deep), var(--taupe) 130%);
+    border: 8px solid var(--paper);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--espresso);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+.couple-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+  /* ---------- Countdown ---------- */
+  .countdown-wrap{ text-align: center; padding: 40px 0 10px; }
+  .countdown-wrap .eyebrow{ display:block; margin-bottom: 6px; }
+  .countdown{
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .countdown .unit{ text-align: center; }
+  .countdown .unit .num{
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    display: block;
+  }
+  .countdown .unit .lbl{
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mocha);
+  }
+
+  /* ---------- RSVP ---------- */
+  .rsvp{ text-align: center; }
+  .rsvp p{ color: #423b34; max-width: 40ch; margin: 0 auto 24px; font-size: 1.08rem; }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--espresso);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 15px 34px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn:hover{ background: #26201a; transform: translateY(-2px); }
+  .btn:focus-visible{ outline: 2px solid var(--mocha); outline-offset: 3px; }
+
+  /* ---------- Dress code ---------- */
+  .dress{ text-align: center; }
+  .dress h2{ font-size: clamp(1.6rem, 4.5vw, 2.1rem); margin-bottom: 4px; }
+  .dress .theme{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: 2rem;
+    color: var(--mocha);
+    margin-bottom: 26px;
+  }
+  .palette{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .swatch{
+    width: 54px; height: 54px;
+    box-shadow: var(--shadow);
+  }
+  .dress .note{
+    max-width: 42ch;
+    margin: 0 auto;
+    color: #5c534a;
+    font-size: 1.02rem;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .faq details{
+    border-bottom: 1px solid var(--line);
+    padding: 18px 4px;
+  }
+  .faq summary{
+    cursor: pointer;
+    font-style: italic;
+    font-size: 1.15rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq summary::-webkit-details-marker{ display: none; }
+  .faq summary::after{
+    content: "+";
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--mocha);
+    transition: transform 0.2s ease;
+  }
+  .faq details[open] summary::after{ content: "–"; }
+  .faq .faq-a{
+    margin-top: 10px;
+    color: #5c534a;
+    font-size: 1rem;
+  }
+  .faq-bow{
+    display: block;
+    margin: 34px auto 0;
+    width: 42px;
+    height: 42px;
+    color: var(--ink);
+  }
+
+  /* ---------- Addresses ---------- */
+  .addresses{
+    background:
+      linear-gradient(rgba(28,26,23,0.72), rgba(28,26,23,0.82)),
+      repeating-linear-gradient(45deg, #4a4038 0 18px, #3f362f 18px 36px);
+    color: var(--cream);
+    padding: 56px 30px;
+    text-align: center;
+  }
+  .addresses h2{ margin-bottom: 30px; }
+  .addr-item{ margin-bottom: 26px; text-align: left; max-width: 380px; margin-left: auto; margin-right: auto; }
+  .addr-item .addr-label{
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: 1.5rem;
+    color: var(--taupe);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .addr-item .addr-label::before{ content: "✦"; font-size: 0.7rem; }
+  .addr-item p{ font-size: 0.98rem; color: #ded6c8; }
+
+  /* ---------- Thank you / footer ---------- */
+  .thankyou{
+    text-align: center;
+    padding: 70px 24px 60px;
+    background: var(--cream);
+  }
+  .thankyou h2{
+    font-size: clamp(2rem, 6vw, 2.8rem);
+  }
+  .thankyou .sig{
+    margin-top: 14px;
+    font-family: 'Mrs Saint Delafield', cursive;
+    font-size: 1.5rem;
+    color: var(--mocha);
+  }
+
+  /* ---------- RSVP modal ---------- */
+  .modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(28,26,23,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .modal-overlay.open{ opacity: 1; pointer-events: auto; }
+
+  .modal{
+    background: var(--paper);
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 38px 30px 30px;
+    position: relative;
+    text-align: left;
+    transform: translateY(14px);
+    transition: transform 0.25s ease;
+    box-shadow: var(--shadow);
+  }
+  .modal-overlay.open .modal{ transform: translateY(0); }
+
+  .modal-close{
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 30px; height: 30px;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  .modal h2{ font-size: 1.5rem; margin-bottom: 4px; padding-right: 30px; }
+  .modal .modal-sub{ font-style: italic; color: var(--mocha); margin-bottom: 22px; font-size: 1rem; }
+
+  .field{ margin-bottom: 18px; }
+  .field label{
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    margin-bottom: 7px;
+  }
+  .field input[type="text"],
+  .field input[type="number"],
+  .field textarea{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 9px 2px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    background: transparent;
+  }
+  .field input:focus, .field textarea:focus{ outline: none; border-color: var(--ink); }
+  .field textarea{ resize: vertical; min-height: 60px; }
+
+  .attend-toggle{ display: flex; gap: 10px; }
+  .attend-toggle input{ position: absolute; opacity: 0; pointer-events: none; }
+  .attend-toggle label{
+    flex: 1;
+    text-align: center;
+    padding: 11px 8px;
+    border: 1px solid var(--line);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    color: #5c534a;
+    transition: all 0.15s ease;
+  }
+  .attend-toggle input:checked + label{
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+
+  .modal .btn{ width: 100%; justify-content: center; margin-top: 8px; }
+
+  .modal-success{ text-align: center; padding: 10px 0 4px; }
+  .modal-success h2{ margin-bottom: 10px; font-family: 'Mrs Saint Delafield', cursive; font-size: 2rem; }
+  .modal-success p{ color: #5c534a; font-size: 1.02rem; }
+</style>
+</head>
+<body>
+
+<!-- ============ FRONT COVER (envelope) ============ -->
+<div class="cover" id="coverPage" role="button" tabindex="0" aria-label="Tap to open your invitation">
+  <div class="envelope">
+    <svg viewBox="0 0 240 160" width="100%" height="100%">
+      <rect x="4" y="18" width="232" height="138" fill="#EDE6D8" stroke="#B7A797" stroke-width="1.5"/>
+      <polygon class="flap" points="4,18 120,90 236,18" fill="#F6F2EA" stroke="#B7A797" stroke-width="1.5"/>
+      <polygon points="4,156 90,86 4,18" fill="#E6DCC9" opacity="0.6"/>
+      <polygon points="236,156 150,86 236,18" fill="#E6DCC9" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="cover-monogram">Laura <span class="amp">&amp;</span> David</div>
+  <div class="cover-date">26 · 08 · 2026</div>
+  <span class="cover-tap">Open Invitation</span>
+</div>
+
+<div id="mainContent">
+
+  <!-- ============ NAV ============ -->
+  <nav class="site-nav">
+    <span class="nav-monogram">L <span class="amp">&amp;</span> D</span>
+    <button type="button" class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-menu" id="navMenu">
+    <button type="button" class="nav-menu-close" id="closeNav" aria-label="Close menu">✕</button>
+    <a href="#story" class="nav-link">Our Story</a>
+    <a href="#schedule" class="nav-link">Schedule</a>
+    <a href="#rsvp" class="nav-link">RSVP</a>
+    <a href="#dress" class="nav-link">Dress Code</a>
+    <a href="#details" class="nav-link">Details</a>
+    <a href="#addresses" class="nav-link">Venue Details</a>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <div class="hero-photo" id="heroPhoto">
+
+  <!-- Brown overlay -->
+  <div class="hero-photo-overlay"></div>
+
+  <!-- Text sits ON TOP of the image -->
+  <div class="hero-photo-text">
+    <h1 class="hero-names">
+      Laura<span class="amp">&amp;</span>David
+    </h1>
+
+    <p class="hero-date">
+      Saturday, the 26th of August, 2026
+    </p>
+  </div>
+
+  <a href="#story" class="scroll-cue" aria-label="Scroll to our story">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke="#fff" stroke-width="2" stroke-linecap="round">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </a>
+
+</div>
+
+<div class="hero-spacer"></div>
+
+<div class="content-scroll">
+  <div class="wrap">
+    <!-- ============ OUR STORY ============ -->
+    <section id="story">
+      <div class="section-head">
+        <span class="eyebrow">The beginning</span>
+        <h2>Our Story</h2>
+      </div>
+      <p class="story-text">
+        Our story began in September 2020, when we met at a mutual friend's
+        birthday party. It was love at first sight! We spent the whole evening
+        talking, and from that night on, we've never been apart.
+      </p>
+      <div class="photo-strip">
+        <div class="photo-frame" style="--tilt:-4deg;"><img src="/Images/couple-photoshoot.jpg" alt="Laura and David"></div>
+        <div class="photo-frame" style="--tilt:3deg;"><img src="/Images/bali-photoshoot.jpg" alt="Laura and David"></div>
+        <div class="photo-frame" style="--tilt:-2deg;"><img src="/Images/beach-photoshoot.jpg" alt="Laura and David"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ SCHEDULE ============ -->
+  <section class="schedule-striped" id="schedule">
+    <div class="wrap">
+      <div class="timeline-panel">
+        <div class="section-head">
+          <span class="eyebrow">The</span>
+          <h2>Schedule</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-time">2 PM</div>
+            <div class="t-title">Civil Ceremony</div>
+            <div class="t-desc">Meeting 30 min before in front of the city hall.</div>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-time">4 PM</div>
+            <div class="t-title">Photoshoot</div>
+            <div class="t-desc">Smile with the bride and groom!</div>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-time">6 PM</div>
+            <div class="t-title">Cocktail</div>
+            <div class="t-desc">Head to the domaine for the reception and drinks together.</div>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-time">8 PM</div>
+            <div class="t-title">Dinner</div>
+            <div class="t-desc">Let's party!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <section>
+    <div class="wrap">
+      <div class="countdown-wrap">
+        <span class="eyebrow">D Day is coming!</span>
+        <div class="countdown" id="countdown">
+          <div class="unit"><span class="num" id="cd-days">--</span><span class="lbl">Days</span></div>
+          <div class="unit"><span class="num" id="cd-hours">--</span><span class="lbl">Hours</span></div>
+          <div class="unit"><span class="num" id="cd-mins">--</span><span class="lbl">Min</span></div>
+          <div class="unit"><span class="num" id="cd-secs">--</span><span class="lbl">Sec</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COUPLE PHOTO ============ -->
+  <section>
+    <div class="wrap">
+      <div class="couple-photo"><img src="/Images/couple-photoshoot.jpg" alt="Laura and David"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ============ RSVP ============ -->
+    <section class="rsvp" id="rsvp">
+      <div class="section-head">
+        <h2>RSVP</h2>
+      </div>
+      <p>Please let us know before April 26th if you will be attending.</p>
+      <button type="button" class="btn" id="openRsvp">Click Here</button>
+    </section>
+
+    <!-- ============ DRESS CODE ============ -->
+    <section class="dress" id="dress">
+      <div class="section-head">
+        <h2>Dress Code</h2>
+      </div>
+      <p style="margin-bottom:2px; font-style:italic; color:#5c534a;">The wedding theme is</p>
+      <div class="theme">Old Money</div>
+      <div class="palette">
+        <div class="swatch" style="background:#E8DECB;"></div>
+        <div class="swatch" style="background:#B7A797;"></div>
+        <div class="swatch" style="background:#7A6552;"></div>
+        <div class="swatch" style="background:#3B2E24;"></div>
+      </div>
+      <p class="note">White is reserved for the bride — think tailored neutrals, cream, camel, and chocolate tones. Elegant and understated is the spirit of the day.</p>
+    </section>
+
+    <!-- ============ DETAILS & QUESTIONS ============ -->
+    <section id="details">
+      <div class="section-head">
+        <h2>Details &amp; Questions</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Is there accommodation nearby?</summary>
+          <p class="faq-a">Note anything you want here. Adjust text, questions and answers.</p>
+        </details>
+        <details>
+          <summary>Is the menu vegan friendly?</summary>
+          <p class="faq-a">Note anything you want here. Adjust text, questions and answers.</p>
+        </details>
+        <details>
+          <summary>Are children welcome?</summary>
+          <p class="faq-a">Note anything you want here. Adjust text, questions and answers.</p>
+        </details>
+      </div>
+      <svg class="faq-bow" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 32c-6-10-22-14-24-4 2 10 16 10 24 4z"/>
+        <path d="M32 32c6-10 22-14 24-4-2 10-16 10-24 4z"/>
+        <circle cx="32" cy="32" r="3" fill="currentColor"/>
+      </svg>
+    </section>
+
+  </div>
+
+  <!-- ============ ADDRESSES ============ -->
+  <section class="addresses" id="addresses">
+    <div class="wrap">
+      <h2>Venue Details</h2>
+      <div class="addr-item">
+        <div class="addr-label">Church</div>
+        <p>St. Mary's Church — 15 Greenhill Road, 67200 Willowtown</p>
+      </div>
+      <div class="addr-item">
+        <div class="addr-label">City Hall</div>
+        <p>Willowtown City Hall — 17 Greenhill Road, 67200 Willowtown. The city hall is located just across from the church.</p>
+      </div>
+      <div class="addr-item">
+        <div class="addr-label">Domaine</div>
+        <p>Domaine Oakwood — 85 Countryside Lane, 67400 Willowhill</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THANK YOU ============ -->
+  <div class="thankyou">
+    <h2>Thank You</h2>
+    <p class="sig">Laura &amp; David</p>
+  </div>
+
+  </div><!-- /.content-scroll -->
+
+  <!-- ============ RSVP MODAL ============ -->
+  <div class="modal-overlay" id="rsvpOverlay" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+    <div class="modal">
+      <button type="button" class="modal-close" id="closeRsvp" aria-label="Close RSVP form">✕</button>
+
+      <form id="rsvpForm">
+        <h2 id="rsvpTitle">RSVP</h2>
+        <p class="modal-sub">We can't wait to celebrate with you.</p>
+
+        <div class="field">
+          <label for="guestName">Full name</label>
+          <input type="text" id="guestName" name="guestName" placeholder="e.g. Jordan Smith" required>
+        </div>
+
+        <div class="field">
+          <label>Will you be attending?</label>
+          <div class="attend-toggle">
+            <input type="radio" id="attendYes" name="attending" value="Yes" checked>
+            <label for="attendYes">Joyfully accept</label>
+            <input type="radio" id="attendNo" name="attending" value="No">
+            <label for="attendNo">Regretfully decline</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="guestCount">Number attending (incl. you)</label>
+          <input type="number" id="guestCount" name="guestCount" min="1" max="10" value="1">
+        </div>
+
+        <div class="field">
+          <label for="guestNotes">Dietary needs or a note for us</label>
+          <textarea id="guestNotes" name="guestNotes" placeholder="Optional — allergies, song requests, well wishes..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Send RSVP</button>
+      </form>
+
+      <div class="modal-success" id="rsvpSuccess" hidden>
+        <h2>Thank you</h2>
+        <p id="rsvpSuccessMsg">We've received your response — see you soon!</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#mainContent -->
+
+<script>
+  // ============================================================
+  // EDIT ME: set the wedding date/time here to update the countdown
+  // ============================================================
+  const weddingDateTime = new Date("2027-08-26T14:00:00");
+
+  let timer;
+
+  function updateCountdown(){
+    const now = new Date();
+    let diff = weddingDateTime - now;
+    const els = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+    if (diff <= 0) {
+      els.d.textContent = '0'; els.h.textContent = '0';
+      els.m.textContent = '0'; els.s.textContent = '0';
+      if (timer) clearInterval(timer);
+      return;
+    }
+    const day = Math.floor(diff / (1000*60*60*24));
+    diff -= day * (1000*60*60*24);
+    const hr = Math.floor(diff / (1000*60*60));
+    diff -= hr * (1000*60*60);
+    const min = Math.floor(diff / (1000*60));
+    diff -= min * (1000*60);
+    const sec = Math.floor(diff / 1000);
+
+    els.d.textContent = day;
+    els.h.textContent = hr;
+    els.m.textContent = min;
+    els.s.textContent = sec;
+  }
+  updateCountdown();
+  timer = setInterval(updateCountdown, 1000);
+
+  // ============================================================
+  // RSVP modal
+  // EDIT ME: change rsvpEmail below to your real address so the
+  // "Send RSVP" button emails the details to you.
+  // ============================================================
+  const rsvpEmail = "rsvp@example.com";
+
+  const overlay = document.getElementById('rsvpOverlay');
+  const openBtn = document.getElementById('openRsvp');
+  const closeBtn = document.getElementById('closeRsvp');
+  const form = document.getElementById('rsvpForm');
+  const successView = document.getElementById('rsvpSuccess');
+  const successMsg = document.getElementById('rsvpSuccessMsg');
+
+  function openModal(){
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    form.hidden = false;
+    successView.hidden = true;
+    form.reset();
+    document.getElementById('guestName').focus();
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const name = document.getElementById('guestName').value.trim();
+    const attending = form.querySelector('input[name="attending"]:checked').value;
+    const count = document.getElementById('guestCount').value;
+    const notes = document.getElementById('guestNotes').value.trim();
+
+    const subject = encodeURIComponent(`RSVP: ${name} — ${attending === 'Yes' ? 'Attending' : 'Not attending'}`);
+    const bodyLines = [
+      `Name: ${name}`,
+      `Attending: ${attending}`,
+      `Number attending: ${count}`,
+      `Notes: ${notes || '—'}`
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    const mailtoLink = `mailto:${rsvpEmail}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
+    successMsg.textContent = attending === 'Yes'
+      ? `Thank you, ${name.split(' ')[0] || 'friend'} — we can't wait to celebrate with you!`
+      : `Thank you for letting us know, ${name.split(' ')[0] || 'friend'} — you'll be missed.`;
+    form.hidden = true;
+    successView.hidden = false;
+  });
+
+  // ============================================================
+  // Nav: burger menu open/close
+  // ============================================================
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navMenu = document.getElementById('navMenu');
+  const closeNavBtn = document.getElementById('closeNav');
+
+  function openNav(){
+    navMenu.classList.add('open');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav(){
+    navMenu.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  burgerBtn.addEventListener('click', () => {
+    navMenu.classList.contains('open') ? closeNav() : openNav();
+  });
+  closeNavBtn.addEventListener('click', closeNav);
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('open')) closeNav();
+  });
+
+  // ============================================================
+  // Front cover: reveal the invitation on click / tap / Enter
+  // ============================================================
+  const coverPage = document.getElementById('coverPage');
+  const mainContent = document.getElementById('mainContent');
+
+  document.documentElement.classList.add('locked');
+
+  function openInvitation(){
+    if (coverPage.classList.contains('closing')) return;
+    coverPage.classList.add('closing');
+    mainContent.classList.add('revealed');
+    document.documentElement.classList.remove('locked');
+    setTimeout(() => { coverPage.hidden = true; }, 850);
+  }
+
+  coverPage.addEventListener('click', openInvitation);
+  coverPage.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openInvitation();
+    }
+  });
+</script>
+
+</body>
+</html>
